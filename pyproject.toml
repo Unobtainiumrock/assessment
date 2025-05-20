@@ -1,0 +1,13 @@
+[project]
+name = "form_filler"
+version = "0.1.0"
+description = "Automated web form filler using Selenium and LLM-driven mapping."
+authors = [{name = "Nicholas Fleischhauer", email = "nicholasfleischhaue@berkeley.edu"}]
+requires-python = ">=3.8"
+dependencies = [
+    "selenium",
+    "webdriver-manager"
+]
+
+[tool.setuptools]
+packages = ["form_filler"]
