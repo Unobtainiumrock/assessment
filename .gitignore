@@ -8,3 +8,10 @@ __pycache__
 *.pyz
 *.pywz
 *.pyzw
+
+
+# Ignore generated files
+original.html
+processed_form.html
+form_mapping.json
+form_processor.log
