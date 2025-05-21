@@ -24,7 +24,7 @@ This project demonstrates an automated web agent that navigates to a specified U
 1. Ensure `mock_data.json` contains the data you want to use.
 2. Run the script:
    ```bash
-   python form_filler.py
+   poetry run python form_filler.py
    ```
 
 The script will open a Chrome browser, navigate to the test form, fill in the fields, and submit the form.

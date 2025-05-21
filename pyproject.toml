@@ -1,13 +1,29 @@
 [project]
-name = "form_filler"
+name = "form-filler"
 version = "0.1.0"
-description = "Automated web form filler using Selenium and LLM-driven mapping."
+description = "Automated form filling using Selenium"
 authors = [{name = "Nicholas Fleischhauer", email = "nicholasfleischhaue@berkeley.edu"}]
 requires-python = ">=3.8"
 dependencies = [
-    "selenium",
-    "webdriver-manager"
+    "selenium>=4.16.0",
+    "jinja2>=3.1.2",
+    "webdriver-manager",
+    "openai>=1.0,<2.0",
+    "requests>=2.25,<2.32",
+    "python-dotenv>=0.20,<1.1",
+    "markupsafe>=2.0,<3.1",
+    "typing_extensions>=4.0,<5.0",
+    "pydantic>=2.0,<3.0",
+    "pydantic_core>=2.0,<3.0",
+    "typing-inspect>=0.8.0,<0.9.0"
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.setuptools]
 packages = ["form_filler"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
