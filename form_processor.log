@@ -1,0 +1,2346 @@
+2025-05-20 17:36:28,092 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:36:28,248 [INFO] Saving HTML to original.html
+2025-05-20 17:36:28,251 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:36:28,251 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:36:28,252 [INFO] Successfully loaded JSON data
+2025-05-20 17:36:28,253 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:36:28,253 [DEBUG] Using model: gpt-4o
+2025-05-20 17:36:28,281 [DEBUG] OpenAI client initialized
+2025-05-20 17:36:28,281 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:36:41,492 [DEBUG] Raw OpenAI response received
+2025-05-20 17:36:41,492 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:36:41,492 [DEBUG] Response content: To create a mapping between the HTML form fields and the JSON data, we need to identify the corresponding JSON paths for each form field, checkbox, and select element. Here's the mapping in the specified JSON format:
+
+```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+
+This mapping ensures that each form field, checkbox, and select element is correctly linked to the corresponding value in the JSON data.
+2025-05-20 17:36:41,493 [DEBUG] Attempting to parse mapping text: To create a mapping between the HTML form fields and the JSON data, we need to identify the corresponding JSON paths for each form field, checkbox, and select element. Here's the mapping in the specified JSON format:
+
+```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1...
+2025-05-20 17:36:41,493 [ERROR] JSON parsing failed. Error: Expecting value: line 1 column 1 (char 0)
+2025-05-20 17:36:41,493 [ERROR] Failed to parse text: To create a mapping between the HTML form fields and the JSON data, we need to identify the corresponding JSON paths for each form field, checkbox, and select element. Here's the mapping in the specified JSON format:
+
+```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+
+This mapping ensures that each form field, checkbox, and select element is correctly linked to the corresponding value in the JSON data.
+2025-05-20 17:36:41,493 [ERROR] Failed to get mapping from OpenAI: Expecting value: line 1 column 1 (char 0)
+2025-05-20 17:36:41,494 [ERROR] Exception type: <class 'json.decoder.JSONDecodeError'>
+2025-05-20 17:36:41,494 [ERROR] Exception details: Expecting value: line 1 column 1 (char 0)
+2025-05-20 17:36:41,494 [ERROR] An error occurred: Expecting value: line 1 column 1 (char 0)
+2025-05-20 17:37:39,682 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:37:39,715 [INFO] Saving HTML to original.html
+2025-05-20 17:37:39,717 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:37:39,717 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:37:39,718 [INFO] Successfully loaded JSON data
+2025-05-20 17:37:39,719 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:37:39,719 [DEBUG] Using model: gpt-4o
+2025-05-20 17:37:39,745 [DEBUG] OpenAI client initialized
+2025-05-20 17:37:39,745 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:37:55,707 [DEBUG] Raw OpenAI response received
+2025-05-20 17:37:55,709 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:37:55,713 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:37:55,716 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:37:55,717 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:37:55,717 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:37:55,719 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:37:55,719 [INFO] Applying mapping to HTML
+2025-05-20 17:37:55,720 [ERROR] Failed to apply mapping to HTML: name 'json_dataattorney' is not defined
+2025-05-20 17:37:55,721 [ERROR] An error occurred: name 'json_dataattorney' is not defined
+2025-05-20 17:38:42,142 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:38:42,178 [INFO] Saving HTML to original.html
+2025-05-20 17:38:42,180 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:38:42,180 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:38:42,182 [INFO] Successfully loaded JSON data
+2025-05-20 17:38:42,182 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:38:42,182 [DEBUG] Using model: gpt-4o
+2025-05-20 17:38:42,210 [DEBUG] OpenAI client initialized
+2025-05-20 17:38:42,210 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:38:53,233 [DEBUG] Raw OpenAI response received
+2025-05-20 17:38:53,234 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:38:53,234 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:38:53,234 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:38:53,235 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:38:53,235 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:38:53,237 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:38:53,237 [INFO] Applying mapping to HTML
+2025-05-20 17:38:53,237 [ERROR] Failed to process field online-account: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,237 [ERROR] Failed to process field family-name: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,238 [ERROR] Failed to process field given-name: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,238 [ERROR] Failed to process field middle-name: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,238 [ERROR] Failed to process field street-number: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,238 [ERROR] Failed to process field apt-number: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,239 [ERROR] Failed to process field city: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,239 [ERROR] Failed to process field zip: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,239 [ERROR] Failed to process field province: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,239 [ERROR] Failed to process field country: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,239 [ERROR] Failed to process field daytime-phone: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,240 [ERROR] Failed to process field email: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,240 [ERROR] Failed to process field fax: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,240 [ERROR] Failed to process field licensing-authority: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,240 [ERROR] Failed to process field bar-number: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,241 [ERROR] Failed to process field law-firm: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,241 [ERROR] Failed to process field recognized-org: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,241 [ERROR] Failed to process field accreditation-date: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,241 [ERROR] Failed to process field associated-with-name: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,241 [ERROR] Failed to process field option1-matter: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,242 [ERROR] Failed to process field option2-matter: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,242 [ERROR] Failed to process field option3-matter: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,242 [ERROR] Failed to process field receipt-number: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,242 [ERROR] Failed to process field client-family-name: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,242 [ERROR] Failed to process field client-given-name: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,243 [ERROR] Failed to process field entity-name: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,243 [ERROR] Failed to process field entity-title: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,243 [ERROR] Failed to process field client-account-number: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,243 [ERROR] Failed to process field client-id-number: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,243 [ERROR] Failed to process field client-daytime-phone: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,244 [ERROR] Failed to process field client-mobile-phone: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,244 [ERROR] Failed to process field client-email: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,244 [ERROR] Failed to process field client-street: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,244 [ERROR] Failed to process field client-apt-number: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,245 [ERROR] Failed to process field client-city: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,245 [ERROR] Failed to process field client-zip: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,245 [ERROR] Failed to process field client-province: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,245 [ERROR] Failed to process field client-country: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,245 [ERROR] Failed to process field client-signature-date: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,246 [ERROR] Failed to process field attorney-signature-date: 'dict' object has no attribute 'attorney_signature_date'
+2025-05-20 17:38:53,246 [ERROR] Failed to process field student-signature-date: 'dict' object has no attribute 'additional_signature_date'
+2025-05-20 17:38:53,246 [ERROR] Failed to process field add-info-family-name: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,246 [ERROR] Failed to process field add-info-given-name: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,246 [ERROR] Failed to process field add-info-middle-name: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,247 [ERROR] Failed to process field add-info-page-2a: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,247 [ERROR] Failed to process field add-info-part-2b: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,247 [ERROR] Failed to process field add-info-item-2c: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,247 [ERROR] Failed to process field add-info-text-2d: 'dict' object has no attribute 'part6'
+2025-05-20 17:38:53,247 [ERROR] Failed to process checkbox apt: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,248 [ERROR] Failed to process checkbox ste: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,248 [ERROR] Failed to process checkbox flr: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,248 [ERROR] Failed to process checkbox attorney-eligible: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,248 [ERROR] Failed to process checkbox not-subject: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,249 [ERROR] Failed to process checkbox am-subject: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,249 [ERROR] Failed to process checkbox accredited-rep: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,249 [ERROR] Failed to process checkbox associated-with: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,249 [ERROR] Failed to process checkbox law-student: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,249 [ERROR] Failed to process checkbox option1: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,250 [ERROR] Failed to process checkbox option2: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,250 [ERROR] Failed to process checkbox option3: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,250 [ERROR] Failed to process checkbox applicant: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,250 [ERROR] Failed to process checkbox petitioner: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,250 [ERROR] Failed to process checkbox requestor: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,251 [ERROR] Failed to process checkbox beneficiary: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,251 [ERROR] Failed to process checkbox respondent: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,251 [ERROR] Failed to process checkbox client-apt: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,251 [ERROR] Failed to process checkbox client-ste: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,251 [ERROR] Failed to process checkbox client-flr: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,252 [ERROR] Failed to process checkbox notices-to-attorney: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,252 [ERROR] Failed to process checkbox documents-to-attorney: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,252 [ERROR] Failed to process checkbox docs-to-me: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,252 [ERROR] Failed to process select state: 'dict' object has no attribute 'attorney'
+2025-05-20 17:38:53,253 [ERROR] Failed to process select client-state: 'dict' object has no attribute 'client'
+2025-05-20 17:38:53,253 [INFO] Successfully applied mapping to HTML
+2025-05-20 17:38:53,255 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 17:41:45,555 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:41:45,585 [INFO] Saving HTML to original.html
+2025-05-20 17:41:45,587 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:41:45,587 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:41:45,589 [INFO] Successfully loaded JSON data
+2025-05-20 17:41:45,589 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:41:45,589 [DEBUG] Using model: gpt-4o
+2025-05-20 17:41:45,617 [DEBUG] OpenAI client initialized
+2025-05-20 17:41:45,617 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:41:56,646 [DEBUG] Raw OpenAI response received
+2025-05-20 17:41:56,647 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:41:56,647 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:41:56,647 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:41:56,648 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:41:56,648 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:41:56,650 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:41:56,650 [INFO] Applying mapping to HTML
+2025-05-20 17:41:56,650 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 17:41:56,650 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 17:41:56,651 [DEBUG] Setting field given-name to value: John
+2025-05-20 17:41:56,651 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 17:41:56,651 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 17:41:56,651 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 17:41:56,652 [DEBUG] Setting field city to value: Boston
+2025-05-20 17:41:56,652 [DEBUG] Setting field zip to value: 02108
+2025-05-20 17:41:56,652 [DEBUG] Setting field province to value: 
+2025-05-20 17:41:56,652 [DEBUG] Setting field country to value: United States
+2025-05-20 17:41:56,653 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 17:41:56,653 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 17:41:56,653 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 17:41:56,653 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 17:41:56,653 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 17:41:56,654 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 17:41:56,654 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 17:41:56,654 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 17:41:56,654 [DEBUG] Setting field associated-with-name to value: 
+2025-05-20 17:41:56,654 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 17:41:56,655 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 17:41:56,655 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 17:41:56,655 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 17:41:56,655 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 17:41:56,655 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 17:41:56,656 [DEBUG] Setting field entity-name to value: 
+2025-05-20 17:41:56,656 [DEBUG] Setting field entity-title to value: 
+2025-05-20 17:41:56,656 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 17:41:56,656 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 17:41:56,657 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 17:41:56,657 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 17:41:56,657 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 17:41:56,657 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 17:41:56,657 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 17:41:56,658 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 17:41:56,658 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 17:41:56,658 [DEBUG] Setting field client-province to value: 
+2025-05-20 17:41:56,658 [DEBUG] Setting field client-country to value: US
+2025-05-20 17:41:56,658 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 17:41:56,659 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 17:41:56,659 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 17:41:56,659 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 17:41:56,659 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 17:41:56,659 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 17:41:56,660 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 17:41:56,660 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 17:41:56,660 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 17:41:56,660 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 17:41:56,660 [DEBUG] Setting checkbox ste to checked
+2025-05-20 17:41:56,661 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 17:41:56,661 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 17:41:56,661 [ERROR] Failed to get value for path attorney.law_student != '': "law_student != ''"
+2025-05-20 17:41:56,661 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 17:41:56,661 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 17:41:56,662 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 17:41:56,662 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 17:41:56,662 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 17:41:56,662 [DEBUG] Setting select client-state to value: MA
+2025-05-20 17:41:56,663 [INFO] Successfully applied mapping to HTML
+2025-05-20 17:41:56,664 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 17:53:47,187 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:53:47,335 [INFO] Saving HTML to original.html
+2025-05-20 17:53:47,337 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:53:47,338 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:53:47,339 [INFO] Successfully loaded JSON data
+2025-05-20 17:53:47,340 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:53:47,340 [DEBUG] Using model: gpt-4o
+2025-05-20 17:53:47,360 [DEBUG] OpenAI client initialized
+2025-05-20 17:53:47,360 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:53:55,111 [DEBUG] Raw OpenAI response received
+2025-05-20 17:53:55,111 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:53:55,112 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:53:55,112 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:53:55,112 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:53:55,113 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:53:55,115 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:53:55,115 [INFO] Applying mapping to HTML
+2025-05-20 17:53:55,115 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 17:53:55,115 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 17:53:55,115 [DEBUG] Setting field given-name to value: John
+2025-05-20 17:53:55,116 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 17:53:55,116 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 17:53:55,116 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 17:53:55,116 [DEBUG] Setting field city to value: Boston
+2025-05-20 17:53:55,117 [DEBUG] Setting field zip to value: 02108
+2025-05-20 17:53:55,117 [DEBUG] Setting field province to value: 
+2025-05-20 17:53:55,117 [DEBUG] Setting field country to value: United States
+2025-05-20 17:53:55,117 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 17:53:55,117 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 17:53:55,118 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 17:53:55,118 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 17:53:55,118 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 17:53:55,118 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 17:53:55,118 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 17:53:55,119 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 17:53:55,119 [DEBUG] Setting field associated-with-name to value: 
+2025-05-20 17:53:55,119 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 17:53:55,119 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 17:53:55,119 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 17:53:55,120 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 17:53:55,120 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 17:53:55,120 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 17:53:55,120 [DEBUG] Setting field entity-name to value: 
+2025-05-20 17:53:55,121 [DEBUG] Setting field entity-title to value: 
+2025-05-20 17:53:55,121 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 17:53:55,121 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 17:53:55,121 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 17:53:55,121 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 17:53:55,122 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 17:53:55,122 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 17:53:55,122 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 17:53:55,122 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 17:53:55,123 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 17:53:55,123 [DEBUG] Setting field client-province to value: 
+2025-05-20 17:53:55,123 [DEBUG] Setting field client-country to value: US
+2025-05-20 17:53:55,123 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 17:53:55,124 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 17:53:55,124 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 17:53:55,124 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 17:53:55,124 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 17:53:55,124 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 17:53:55,125 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 17:53:55,125 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 17:53:55,125 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 17:53:55,125 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 17:53:55,126 [DEBUG] Setting checkbox ste to checked
+2025-05-20 17:53:55,126 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 17:53:55,126 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 17:53:55,126 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 17:53:55,126 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 17:53:55,127 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 17:53:55,127 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 17:53:55,127 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 17:53:55,127 [DEBUG] Setting select client-state to value: MA
+2025-05-20 17:53:55,128 [INFO] Successfully applied mapping to HTML
+2025-05-20 17:53:55,129 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 17:55:59,830 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:55:59,867 [INFO] Saving HTML to original.html
+2025-05-20 17:55:59,870 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:55:59,870 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:55:59,872 [INFO] Successfully loaded JSON data
+2025-05-20 17:55:59,872 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:55:59,872 [DEBUG] Using model: gpt-4o
+2025-05-20 17:55:59,900 [DEBUG] OpenAI client initialized
+2025-05-20 17:55:59,900 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:56:13,442 [DEBUG] Raw OpenAI response received
+2025-05-20 17:56:13,442 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:56:13,443 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:56:13,443 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:56:13,443 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:56:13,443 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:56:13,445 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:56:13,446 [INFO] Applying mapping to HTML
+2025-05-20 17:56:13,446 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 17:56:13,446 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 17:56:13,446 [DEBUG] Setting field given-name to value: John
+2025-05-20 17:56:13,447 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 17:56:13,447 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 17:56:13,447 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 17:56:13,447 [DEBUG] Setting field city to value: Boston
+2025-05-20 17:56:13,447 [DEBUG] Setting field zip to value: 02108
+2025-05-20 17:56:13,448 [DEBUG] Setting field province to value: 
+2025-05-20 17:56:13,448 [DEBUG] Setting field country to value: United States
+2025-05-20 17:56:13,448 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 17:56:13,448 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 17:56:13,449 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 17:56:13,449 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 17:56:13,449 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 17:56:13,449 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 17:56:13,450 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 17:56:13,450 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 17:56:13,450 [DEBUG] Setting field associated-with-name to value: 
+2025-05-20 17:56:13,450 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 17:56:13,450 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 17:56:13,451 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 17:56:13,451 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 17:56:13,451 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 17:56:13,451 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 17:56:13,451 [DEBUG] Setting field entity-name to value: 
+2025-05-20 17:56:13,452 [DEBUG] Setting field entity-title to value: 
+2025-05-20 17:56:13,452 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 17:56:13,452 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 17:56:13,452 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 17:56:13,452 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 17:56:13,453 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 17:56:13,453 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 17:56:13,453 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 17:56:13,453 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 17:56:13,453 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 17:56:13,454 [DEBUG] Setting field client-province to value: 
+2025-05-20 17:56:13,454 [DEBUG] Setting field client-country to value: US
+2025-05-20 17:56:13,454 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 17:56:13,454 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 17:56:13,455 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 17:56:13,455 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 17:56:13,455 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 17:56:13,455 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 17:56:13,455 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 17:56:13,456 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 17:56:13,456 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 17:56:13,456 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 17:56:13,456 [DEBUG] Setting checkbox ste to checked
+2025-05-20 17:56:13,456 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 17:56:13,457 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 17:56:13,457 [ERROR] Failed to get value for path attorney.law_student != '': "law_student != ''"
+2025-05-20 17:56:13,457 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 17:56:13,457 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 17:56:13,457 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 17:56:13,458 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 17:56:13,458 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 17:56:13,458 [DEBUG] Setting select client-state to value: MA
+2025-05-20 17:56:13,458 [INFO] Successfully applied mapping to HTML
+2025-05-20 17:56:13,460 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 17:59:19,377 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 17:59:19,411 [INFO] Saving HTML to original.html
+2025-05-20 17:59:19,413 [INFO] Successfully saved HTML to original.html
+2025-05-20 17:59:19,413 [INFO] Loading JSON data from mock_data.json
+2025-05-20 17:59:19,415 [INFO] Successfully loaded JSON data
+2025-05-20 17:59:19,415 [INFO] Requesting mapping from OpenAI
+2025-05-20 17:59:19,415 [DEBUG] Using model: gpt-4o
+2025-05-20 17:59:19,441 [DEBUG] OpenAI client initialized
+2025-05-20 17:59:19,441 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 17:59:30,682 [DEBUG] Raw OpenAI response received
+2025-05-20 17:59:30,683 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 17:59:30,683 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 17:59:30,683 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 17:59:30,683 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 17:59:30,684 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 17:59:30,685 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 17:59:30,685 [INFO] Applying mapping to HTML
+2025-05-20 17:59:30,686 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 17:59:30,686 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 17:59:30,686 [DEBUG] Setting field given-name to value: John
+2025-05-20 17:59:30,686 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 17:59:30,686 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 17:59:30,687 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 17:59:30,687 [DEBUG] Setting field city to value: Boston
+2025-05-20 17:59:30,687 [DEBUG] Setting field zip to value: 02108
+2025-05-20 17:59:30,687 [DEBUG] Setting field province to value: 
+2025-05-20 17:59:30,687 [DEBUG] Setting field country to value: United States
+2025-05-20 17:59:30,688 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 17:59:30,688 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 17:59:30,688 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 17:59:30,688 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 17:59:30,689 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 17:59:30,689 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 17:59:30,690 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 17:59:30,690 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 17:59:30,690 [DEBUG] Setting field associated-with-name to value: 
+2025-05-20 17:59:30,690 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 17:59:30,690 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 17:59:30,690 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 17:59:30,691 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 17:59:30,691 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 17:59:30,691 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 17:59:30,691 [DEBUG] Setting field entity-name to value: 
+2025-05-20 17:59:30,691 [DEBUG] Setting field entity-title to value: 
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 17:59:30,692 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 17:59:30,693 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 17:59:30,693 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 17:59:30,693 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 17:59:30,693 [DEBUG] Setting field client-province to value: 
+2025-05-20 17:59:30,693 [DEBUG] Setting field client-country to value: US
+2025-05-20 17:59:30,694 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 17:59:30,694 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 17:59:30,694 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 17:59:30,694 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 17:59:30,694 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 17:59:30,694 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 17:59:30,695 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 17:59:30,695 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 17:59:30,695 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 17:59:30,695 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 17:59:30,695 [DEBUG] Setting checkbox ste to checked
+2025-05-20 17:59:30,695 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 17:59:30,696 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 17:59:30,696 [ERROR] Failed to get value for path attorney.law_student != '': "law_student != ''"
+2025-05-20 17:59:30,696 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 17:59:30,696 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 17:59:30,696 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 17:59:30,697 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 17:59:30,697 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 17:59:30,697 [DEBUG] Setting select client-state to value: MA
+2025-05-20 17:59:30,697 [INFO] Successfully applied mapping to HTML
+2025-05-20 17:59:30,699 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 18:04:06,592 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 18:04:06,728 [INFO] Saving HTML to original.html
+2025-05-20 18:04:06,730 [INFO] Successfully saved HTML to original.html
+2025-05-20 18:04:06,730 [INFO] Loading JSON data from mock_data.json
+2025-05-20 18:04:06,732 [INFO] Successfully loaded JSON data
+2025-05-20 18:04:06,732 [INFO] Requesting mapping from OpenAI
+2025-05-20 18:04:06,733 [DEBUG] Using model: gpt-4o
+2025-05-20 18:04:06,753 [DEBUG] OpenAI client initialized
+2025-05-20 18:04:06,753 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 18:04:18,832 [DEBUG] Raw OpenAI response received
+2025-05-20 18:04:18,833 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 18:04:18,833 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "postal-code": "attorney.zip_code",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "mobile-phone": "",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "",
+        "student-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "client-middle-name": "",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-postal-code": "client.zip_code",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 18:04:18,833 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "postal-code": "attorney.zip_code",
+        "country": "...
+2025-05-20 18:04:18,834 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "postal-code": "attorney.zip_code",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "mobile-phone": "",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "",
+    "student-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "client-middle-name": "",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-postal-code": "client.zip_code",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 18:04:18,834 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 18:04:18,836 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 18:04:18,836 [INFO] Applying mapping to HTML
+2025-05-20 18:04:18,836 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 18:04:18,837 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 18:04:18,837 [DEBUG] Setting field given-name to value: John
+2025-05-20 18:04:18,837 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 18:04:18,837 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 18:04:18,838 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 18:04:18,838 [DEBUG] Setting field city to value: Boston
+2025-05-20 18:04:18,838 [DEBUG] Setting field zip to value: 02108
+2025-05-20 18:04:18,838 [DEBUG] Setting field province to value: 
+2025-05-20 18:04:18,839 [DEBUG] Setting field postal-code to value: 02108
+2025-05-20 18:04:18,839 [DEBUG] Setting field country to value: United States
+2025-05-20 18:04:18,839 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 18:04:18,839 [ERROR] Failed to get value for path : ''
+2025-05-20 18:04:18,840 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 18:04:18,840 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 18:04:18,840 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 18:04:18,840 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 18:04:18,840 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 18:04:18,841 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 18:04:18,841 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 18:04:18,841 [ERROR] Failed to get value for path : ''
+2025-05-20 18:04:18,841 [DEBUG] Setting field student-name to value: 
+2025-05-20 18:04:18,841 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 18:04:18,842 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 18:04:18,842 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 18:04:18,842 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 18:04:18,842 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 18:04:18,843 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 18:04:18,843 [ERROR] Failed to get value for path : ''
+2025-05-20 18:04:18,843 [DEBUG] Setting field entity-name to value: 
+2025-05-20 18:04:18,843 [DEBUG] Setting field entity-title to value: 
+2025-05-20 18:04:18,843 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 18:04:18,844 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 18:04:18,844 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 18:04:18,844 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 18:04:18,844 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 18:04:18,844 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 18:04:18,845 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 18:04:18,845 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 18:04:18,845 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 18:04:18,845 [DEBUG] Setting field client-province to value: 
+2025-05-20 18:04:18,845 [DEBUG] Setting field client-postal-code to value: 02116
+2025-05-20 18:04:18,846 [DEBUG] Setting field client-country to value: US
+2025-05-20 18:04:18,846 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 18:04:18,846 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 18:04:18,846 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 18:04:18,847 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 18:04:18,847 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 18:04:18,847 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 18:04:18,847 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 18:04:18,848 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 18:04:18,848 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 18:04:18,848 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 18:04:18,848 [DEBUG] Setting checkbox ste to checked
+2025-05-20 18:04:18,848 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 18:04:18,849 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 18:04:18,849 [ERROR] Failed to get value for path attorney.law_student != '': "law_student != ''"
+2025-05-20 18:04:18,849 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 18:04:18,849 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 18:04:18,849 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 18:04:18,850 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 18:04:18,850 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 18:04:18,850 [DEBUG] Setting select client-state to value: MA
+2025-05-20 18:04:18,850 [INFO] Successfully applied mapping to HTML
+2025-05-20 18:04:18,853 [INFO] Successfully saved processed form to processed_form.html
+2025-05-20 18:08:56,038 [INFO] Downloading HTML from https://mendrika-alma.github.io/form-submission/
+2025-05-20 18:08:56,074 [INFO] Saving HTML to original.html
+2025-05-20 18:08:56,076 [INFO] Successfully saved HTML to original.html
+2025-05-20 18:08:56,076 [INFO] Loading JSON data from mock_data.json
+2025-05-20 18:08:56,077 [INFO] Successfully loaded JSON data
+2025-05-20 18:08:56,078 [INFO] Requesting mapping from OpenAI
+2025-05-20 18:08:56,078 [DEBUG] Using model: gpt-4o
+2025-05-20 18:08:56,106 [DEBUG] OpenAI client initialized
+2025-05-20 18:08:56,106 [DEBUG] Prompt preview: Given this HTML form and JSON data, create a mapping of form fields to JSON values.
+The mapping should be in JSON format with the following structure:
+{
+    "field_mappings": {
+        "field_id": "json_path_to_value"
+    },
+    "checkbox_mappings": {
+        "checkbox_id": "json_path_to_boolean"
+    },
+    "select_mappings": {
+        "select_id": "json_path_to_value"
+    }
+}
+
+HTML Form:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=...
+2025-05-20 18:09:07,458 [DEBUG] Raw OpenAI response received
+2025-05-20 18:09:07,458 [DEBUG] Response object type: <class 'openai.types.chat.chat_completion.ChatCompletion'>
+2025-05-20 18:09:07,458 [DEBUG] Response content: ```json
+{
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": "attorney.daytime_phone",
+        "email": "attorney.email",
+        "fax": "attorney.fax",
+        "licensing-authority": "attorney.licensing_state",
+        "bar-number": "attorney.bar_number",
+        "law-firm": "attorney.law_firm",
+        "recognized-org": "attorney.org_name",
+        "accreditation-date": "attorney.accreditation_date",
+        "associated-with-name": "attorney.law_student",
+        "option1-matter": "attorney.administrative_matter",
+        "option2-matter": "attorney.civil_matter",
+        "option3-matter": "attorney.other_legal_matter",
+        "receipt-number": "attorney.receipt_number",
+        "client-family-name": "client.family_name",
+        "client-given-name": "client.first_name",
+        "entity-name": "client.entity_name",
+        "entity-title": "client.entity_title",
+        "client-account-number": "client.reference_number",
+        "client-id-number": "client.id_number",
+        "client-daytime-phone": "client.daytime_phone",
+        "client-mobile-phone": "client.mobile_phone",
+        "client-email": "client.email",
+        "client-street": "client.address_line_1",
+        "client-apt-number": "client.address_line_2",
+        "client-city": "client.city",
+        "client-zip": "client.zip_code",
+        "client-province": "client.province",
+        "client-country": "client.country",
+        "client-signature-date": "client.signature_date",
+        "attorney-signature-date": "attorney_signature_date",
+        "student-signature-date": "additional_signature_date",
+        "add-info-family-name": "part6.additional_info.family_name",
+        "add-info-given-name": "part6.additional_info.given_name",
+        "add-info-middle-name": "part6.additional_info.middle_name",
+        "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+        "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+        "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+        "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+    },
+    "checkbox_mappings": {
+        "apt": "attorney.unit_type == 'Apt'",
+        "ste": "attorney.unit_type == 'Ste'",
+        "flr": "attorney.unit_type == 'Flr'",
+        "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+        "not-subject": "attorney.subject_to_restrictions == 'no'",
+        "am-subject": "attorney.subject_to_restrictions == 'yes'",
+        "accredited-rep": "attorney.is_nonprofit_rep",
+        "associated-with": "attorney.associated_with_student == 'yes'",
+        "law-student": "attorney.law_student != ''",
+        "option1": "attorney.administrative_case",
+        "option2": "attorney.civil_case",
+        "option3": "attorney.other_legal",
+        "applicant": "attorney.client_type == 'Applicant'",
+        "petitioner": "attorney.client_type == 'Petitioner'",
+        "requestor": "attorney.client_type == 'Requestor'",
+        "beneficiary": "attorney.client_type == 'Beneficiary'",
+        "respondent": "attorney.client_type == 'Respondent'",
+        "client-apt": "client.unit_type == 'Apt'",
+        "client-ste": "client.unit_type == 'Ste'",
+        "client-flr": "client.unit_type == 'Flr'",
+        "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+        "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+        "docs-to-me": "client.send_documents_to_client == 'Y'"
+    },
+    "select_mappings": {
+        "state": "attorney.state",
+        "client-state": "client.state"
+    }
+}
+```
+2025-05-20 18:09:07,459 [DEBUG] Extracted JSON content: {
+    "field_mappings": {
+        "online-account": "attorney.online_account_number",
+        "family-name": "attorney.family_name",
+        "given-name": "attorney.first_name",
+        "middle-name": "attorney.middle_name",
+        "street-number": "attorney.address_line_1",
+        "apt-number": "attorney.address_line_2",
+        "city": "attorney.city",
+        "zip": "attorney.zip_code",
+        "province": "attorney.province",
+        "country": "attorney.country",
+        "daytime-phone": ...
+2025-05-20 18:09:07,459 [DEBUG] Successfully parsed mapping: {
+  "field_mappings": {
+    "online-account": "attorney.online_account_number",
+    "family-name": "attorney.family_name",
+    "given-name": "attorney.first_name",
+    "middle-name": "attorney.middle_name",
+    "street-number": "attorney.address_line_1",
+    "apt-number": "attorney.address_line_2",
+    "city": "attorney.city",
+    "zip": "attorney.zip_code",
+    "province": "attorney.province",
+    "country": "attorney.country",
+    "daytime-phone": "attorney.daytime_phone",
+    "email": "attorney.email",
+    "fax": "attorney.fax",
+    "licensing-authority": "attorney.licensing_state",
+    "bar-number": "attorney.bar_number",
+    "law-firm": "attorney.law_firm",
+    "recognized-org": "attorney.org_name",
+    "accreditation-date": "attorney.accreditation_date",
+    "associated-with-name": "attorney.law_student",
+    "option1-matter": "attorney.administrative_matter",
+    "option2-matter": "attorney.civil_matter",
+    "option3-matter": "attorney.other_legal_matter",
+    "receipt-number": "attorney.receipt_number",
+    "client-family-name": "client.family_name",
+    "client-given-name": "client.first_name",
+    "entity-name": "client.entity_name",
+    "entity-title": "client.entity_title",
+    "client-account-number": "client.reference_number",
+    "client-id-number": "client.id_number",
+    "client-daytime-phone": "client.daytime_phone",
+    "client-mobile-phone": "client.mobile_phone",
+    "client-email": "client.email",
+    "client-street": "client.address_line_1",
+    "client-apt-number": "client.address_line_2",
+    "client-city": "client.city",
+    "client-zip": "client.zip_code",
+    "client-province": "client.province",
+    "client-country": "client.country",
+    "client-signature-date": "client.signature_date",
+    "attorney-signature-date": "attorney_signature_date",
+    "student-signature-date": "additional_signature_date",
+    "add-info-family-name": "part6.additional_info.family_name",
+    "add-info-given-name": "part6.additional_info.given_name",
+    "add-info-middle-name": "part6.additional_info.middle_name",
+    "add-info-page-2a": "part6.additional_info.entries[0].page_number",
+    "add-info-part-2b": "part6.additional_info.entries[0].part_number",
+    "add-info-item-2c": "part6.additional_info.entries[0].item_number",
+    "add-info-text-2d": "part6.additional_info.entries[0].additional_info"
+  },
+  "checkbox_mappings": {
+    "apt": "attorney.unit_type == 'Apt'",
+    "ste": "attorney.unit_type == 'Ste'",
+    "flr": "attorney.unit_type == 'Flr'",
+    "attorney-eligible": "attorney.attorney_eligible == 'yes'",
+    "not-subject": "attorney.subject_to_restrictions == 'no'",
+    "am-subject": "attorney.subject_to_restrictions == 'yes'",
+    "accredited-rep": "attorney.is_nonprofit_rep",
+    "associated-with": "attorney.associated_with_student == 'yes'",
+    "law-student": "attorney.law_student != ''",
+    "option1": "attorney.administrative_case",
+    "option2": "attorney.civil_case",
+    "option3": "attorney.other_legal",
+    "applicant": "attorney.client_type == 'Applicant'",
+    "petitioner": "attorney.client_type == 'Petitioner'",
+    "requestor": "attorney.client_type == 'Requestor'",
+    "beneficiary": "attorney.client_type == 'Beneficiary'",
+    "respondent": "attorney.client_type == 'Respondent'",
+    "client-apt": "client.unit_type == 'Apt'",
+    "client-ste": "client.unit_type == 'Ste'",
+    "client-flr": "client.unit_type == 'Flr'",
+    "notices-to-attorney": "client.send_notices_to_attorney == 'Y'",
+    "documents-to-attorney": "client.send_documents_to_attorney == 'Y'",
+    "docs-to-me": "client.send_documents_to_client == 'Y'"
+  },
+  "select_mappings": {
+    "state": "attorney.state",
+    "client-state": "client.state"
+  }
+}
+2025-05-20 18:09:07,460 [INFO] Successfully received and parsed mapping from OpenAI
+2025-05-20 18:09:07,461 [INFO] Saved form mapping to form_mapping.json
+2025-05-20 18:09:07,461 [INFO] Applying mapping to HTML
+2025-05-20 18:09:07,462 [DEBUG] Setting field online-account to value: A123456789
+2025-05-20 18:09:07,462 [DEBUG] Setting field family-name to value: Doe
+2025-05-20 18:09:07,462 [DEBUG] Setting field given-name to value: John
+2025-05-20 18:09:07,462 [DEBUG] Setting field middle-name to value: Michael
+2025-05-20 18:09:07,463 [DEBUG] Setting field street-number to value: 123 Legal Avenue
+2025-05-20 18:09:07,463 [DEBUG] Setting field apt-number to value: 405
+2025-05-20 18:09:07,463 [DEBUG] Setting field city to value: Boston
+2025-05-20 18:09:07,463 [DEBUG] Setting field zip to value: 02108
+2025-05-20 18:09:07,463 [DEBUG] Setting field province to value: 
+2025-05-20 18:09:07,464 [DEBUG] Setting field country to value: United States
+2025-05-20 18:09:07,464 [DEBUG] Setting field daytime-phone to value: (617) 555-7890
+2025-05-20 18:09:07,464 [DEBUG] Setting field email to value: mdoe@legalfirm.com
+2025-05-20 18:09:07,464 [DEBUG] Setting field fax to value: 6175554321
+2025-05-20 18:09:07,465 [DEBUG] Setting field licensing-authority to value: MA
+2025-05-20 18:09:07,465 [DEBUG] Setting field bar-number to value: BBO#654321
+2025-05-20 18:09:07,465 [DEBUG] Setting field law-firm to value: Doe & Associates Legal Group
+2025-05-20 18:09:07,465 [DEBUG] Setting field recognized-org to value: 
+2025-05-20 18:09:07,465 [DEBUG] Setting field accreditation-date to value: 
+2025-05-20 18:09:07,466 [DEBUG] Setting field associated-with-name to value: 
+2025-05-20 18:09:07,466 [DEBUG] Setting field option1-matter to value: I-485 Application to Register Permanent Residence
+2025-05-20 18:09:07,466 [DEBUG] Setting field option2-matter to value: 
+2025-05-20 18:09:07,466 [DEBUG] Setting field option3-matter to value: 
+2025-05-20 18:09:07,466 [DEBUG] Setting field receipt-number to value: MSC2190123456
+2025-05-20 18:09:07,467 [DEBUG] Setting field client-family-name to value: Jones
+2025-05-20 18:09:07,467 [DEBUG] Setting field client-given-name to value: Jane
+2025-05-20 18:09:07,467 [DEBUG] Setting field entity-name to value: 
+2025-05-20 18:09:07,467 [DEBUG] Setting field entity-title to value: 
+2025-05-20 18:09:07,467 [DEBUG] Setting field client-account-number to value: GRC-2023-0045
+2025-05-20 18:09:07,468 [DEBUG] Setting field client-id-number to value: A087654321
+2025-05-20 18:09:07,468 [DEBUG] Setting field client-daytime-phone to value: 8575556789
+2025-05-20 18:09:07,468 [DEBUG] Setting field client-mobile-phone to value: 8575559876
+2025-05-20 18:09:07,468 [DEBUG] Setting field client-email to value: jane.jones@email.com
+2025-05-20 18:09:07,468 [DEBUG] Setting field client-street to value: 45 Commonwealth Avenue
+2025-05-20 18:09:07,469 [DEBUG] Setting field client-apt-number to value: 
+2025-05-20 18:09:07,469 [DEBUG] Setting field client-city to value: Boston
+2025-05-20 18:09:07,469 [DEBUG] Setting field client-zip to value: 02116
+2025-05-20 18:09:07,469 [DEBUG] Setting field client-province to value: 
+2025-05-20 18:09:07,469 [DEBUG] Setting field client-country to value: US
+2025-05-20 18:09:07,470 [DEBUG] Setting field client-signature-date to value: 
+2025-05-20 18:09:07,470 [DEBUG] Setting field attorney-signature-date to value: 
+2025-05-20 18:09:07,470 [DEBUG] Setting field student-signature-date to value: 
+2025-05-20 18:09:07,471 [DEBUG] Setting field add-info-family-name to value: Johnson
+2025-05-20 18:09:07,471 [DEBUG] Setting field add-info-given-name to value: Sarah
+2025-05-20 18:09:07,471 [DEBUG] Setting field add-info-middle-name to value: Elizabeth
+2025-05-20 18:09:07,471 [DEBUG] Setting field add-info-page-2a to value: 1
+2025-05-20 18:09:07,472 [DEBUG] Setting field add-info-part-2b to value: 2
+2025-05-20 18:09:07,472 [DEBUG] Setting field add-info-item-2c to value: 1.a
+2025-05-20 18:09:07,472 [DEBUG] Setting field add-info-text-2d to value: Also licensed in New York State Bar, Bar #NY7654321
+2025-05-20 18:09:07,472 [DEBUG] Setting checkbox ste to checked
+2025-05-20 18:09:07,472 [DEBUG] Setting checkbox attorney-eligible to checked
+2025-05-20 18:09:07,473 [DEBUG] Setting checkbox not-subject to checked
+2025-05-20 18:09:07,473 [ERROR] Failed to get value for path attorney.law_student != '': "law_student != ''"
+2025-05-20 18:09:07,473 [DEBUG] Setting checkbox option1 to checked
+2025-05-20 18:09:07,473 [DEBUG] Setting checkbox beneficiary to checked
+2025-05-20 18:09:07,473 [DEBUG] Setting checkbox notices-to-attorney to checked
+2025-05-20 18:09:07,474 [DEBUG] Setting checkbox documents-to-attorney to checked
+2025-05-20 18:09:07,474 [DEBUG] Setting select state to value: Massachusetts
+2025-05-20 18:09:07,474 [DEBUG] Setting select client-state to value: MA
+2025-05-20 18:09:07,474 [INFO] Successfully applied mapping to HTML
+2025-05-20 18:09:07,476 [INFO] Successfully saved processed form to processed_form.html

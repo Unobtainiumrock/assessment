@@ -1,0 +1,106 @@
+{# Form Processing Template #}
+{# This template processes the HTML form and fills it with the provided data #}
+
+{% set html = data.html_content %}
+{% set form_data = data.form_data %}
+{% set attorney = form_data.attorney %}
+{% set client = form_data.client %}
+
+{# Process the HTML content #}
+{{ html|replace('id="online-account"', 'id="online-account" value="' ~ attorney.online_account_number ~ '"') }}
+{{ html|replace('id="family-name"', 'id="family-name" value="' ~ attorney.family_name ~ '"') }}
+{{ html|replace('id="given-name"', 'id="given-name" value="' ~ attorney.first_name ~ '"') }}
+{{ html|replace('id="middle-name"', 'id="middle-name" value="' ~ attorney.middle_name ~ '"') }}
+{{ html|replace('id="street-number"', 'id="street-number" value="' ~ attorney.address_line_1 ~ '"') }}
+{{ html|replace('id="apt-number"', 'id="apt-number" value="' ~ attorney.address_line_2 ~ '"') }}
+{{ html|replace('id="city"', 'id="city" value="' ~ attorney.city ~ '"') }}
+{{ html|replace('id="state"', 'id="state" value="' ~ attorney.state ~ '"') }}
+{{ html|replace('id="zip"', 'id="zip" value="' ~ attorney.zip_code ~ '"') }}
+{{ html|replace('id="province"', 'id="province" value="' ~ attorney.province ~ '"') }}
+{{ html|replace('id="country"', 'id="country" value="' ~ attorney.country ~ '"') }}
+{{ html|replace('id="daytime-phone"', 'id="daytime-phone" value="' ~ attorney.daytime_phone ~ '"') }}
+{{ html|replace('id="email"', 'id="email" value="' ~ attorney.email ~ '"') }}
+{{ html|replace('id="fax"', 'id="fax" value="' ~ attorney.fax ~ '"') }}
+
+{# Client Information #}
+{{ html|replace('id="client-family-name"', 'id="client-family-name" value="' ~ client.family_name ~ '"') }}
+{{ html|replace('id="client-given-name"', 'id="client-given-name" value="' ~ client.first_name ~ '"') }}
+{{ html|replace('id="client-middle-name"', 'id="client-middle-name" value="' ~ client.middle_name ~ '"') }}
+{{ html|replace('id="entity-name"', 'id="entity-name" value="' ~ client.entity_name ~ '"') }}
+{{ html|replace('id="entity-title"', 'id="entity-title" value="' ~ client.entity_title ~ '"') }}
+{{ html|replace('id="client-account-number"', 'id="client-account-number" value="' ~ client.reference_number ~ '"') }}
+{{ html|replace('id="client-id-number"', 'id="client-id-number" value="' ~ client.id_number ~ '"') }}
+{{ html|replace('id="client-daytime-phone"', 'id="client-daytime-phone" value="' ~ client.daytime_phone ~ '"') }}
+{{ html|replace('id="client-mobile-phone"', 'id="client-mobile-phone" value="' ~ client.mobile_phone ~ '"') }}
+{{ html|replace('id="client-email"', 'id="client-email" value="' ~ client.email ~ '"') }}
+{{ html|replace('id="client-street"', 'id="client-street" value="' ~ client.address_line_1 ~ '"') }}
+{{ html|replace('id="client-apt-number"', 'id="client-apt-number" value="' ~ client.address_line_2 ~ '"') }}
+{{ html|replace('id="client-city"', 'id="client-city" value="' ~ client.city ~ '"') }}
+{{ html|replace('id="client-state"', 'id="client-state" value="' ~ client.state ~ '"') }}
+{{ html|replace('id="client-zip"', 'id="client-zip" value="' ~ client.zip_code ~ '"') }}
+{{ html|replace('id="client-province"', 'id="client-province" value="' ~ client.province ~ '"') }}
+{{ html|replace('id="client-country"', 'id="client-country" value="' ~ client.country ~ '"') }}
+
+{# Case Information #}
+{{ html|replace('id="receipt-number"', 'id="receipt-number" value="' ~ attorney.receipt_number ~ '"') }}
+{{ html|replace('id="option1-matter"', 'id="option1-matter" value="' ~ (attorney.administrative_matter if attorney.administrative_case else '') ~ '"') }}
+{{ html|replace('id="option2-matter"', 'id="option2-matter" value="' ~ (attorney.civil_matter if attorney.civil_case else '') ~ '"') }}
+{{ html|replace('id="option3-matter"', 'id="option3-matter" value="' ~ (attorney.other_legal_matter if attorney.other_legal else '') ~ '"') }}
+
+{# Checkbox States #}
+{% if attorney.attorney_eligible == "yes" %}
+{{ html|replace('id="attorney-eligible"', 'id="attorney-eligible" checked') }}
+{% endif %}
+
+{% if attorney.subject_to_restrictions == "no" %}
+{{ html|replace('id="not-subject"', 'id="not-subject" checked') }}
+{% else %}
+{{ html|replace('id="am-subject"', 'id="am-subject" checked') }}
+{% endif %}
+
+{% if client.send_notices_to_attorney == "Y" %}
+{{ html|replace('id="notices-to-attorney"', 'id="notices-to-attorney" checked') }}
+{% endif %}
+
+{% if client.send_documents_to_attorney == "Y" %}
+{{ html|replace('id="documents-to-attorney"', 'id="documents-to-attorney" checked') }}
+{% endif %}
+
+{% if client.send_documents_to_client == "Y" %}
+{{ html|replace('id="docs-to-me"', 'id="docs-to-me" checked') }}
+{% endif %}
+
+{% if attorney.administrative_case %}
+{{ html|replace('id="option1"', 'id="option1" checked') }}
+{% endif %}
+
+{% if attorney.civil_case %}
+{{ html|replace('id="option2"', 'id="option2" checked') }}
+{% endif %}
+
+{% if attorney.other_legal %}
+{{ html|replace('id="option3"', 'id="option3" checked') }}
+{% endif %}
+
+{% if attorney.client_type == "Beneficiary" %}
+{{ html|replace('id="beneficiary"', 'id="beneficiary" checked') }}
+{% endif %}
+
+{# Additional Information #}
+{% if form_data.part6 and form_data.part6.additional_info %}
+{% set additional = form_data.part6.additional_info %}
+{{ html|replace('id="add-info-family-name"', 'id="add-info-family-name" value="' ~ additional.family_name ~ '"') }}
+{{ html|replace('id="add-info-given-name"', 'id="add-info-given-name" value="' ~ additional.given_name ~ '"') }}
+{{ html|replace('id="add-info-middle-name"', 'id="add-info-middle-name" value="' ~ additional.middle_name ~ '"') }}
+
+{% for entry in additional.entries %}
+{{ html|replace('id="add-info-page-' ~ loop.index ~ 'a"', 'id="add-info-page-' ~ loop.index ~ 'a" value="' ~ entry.page_number ~ '"') }}
+{{ html|replace('id="add-info-part-' ~ loop.index ~ 'b"', 'id="add-info-part-' ~ loop.index ~ 'b" value="' ~ entry.part_number ~ '"') }}
+{{ html|replace('id="add-info-item-' ~ loop.index ~ 'c"', 'id="add-info-item-' ~ loop.index ~ 'c" value="' ~ entry.item_number ~ '"') }}
+{{ html|replace('id="add-info-text-' ~ loop.index ~ 'd"', 'id="add-info-text-' ~ loop.index ~ 'd">' ~ entry.additional_info) }}
+{% endfor %}
+{% endif %}
+
+{# Signature Dates #}
+{{ html|replace('id="attorney-signature-date"', 'id="attorney-signature-date" value="' ~ form_data.attorney_signature_date ~ '"') }}
+{{ html|replace('id="client-signature-date"', 'id="client-signature-date" value="' ~ form_data.additional_signature_date ~ '"') }} 

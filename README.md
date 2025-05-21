@@ -1,42 +1,104 @@
-# Form Filler Web Agent
+# Form Processing Automation
 
-This project demonstrates an automated web agent that navigates to a specified URL and fills out a form using provided mock data, leveraging Selenium for browser automation.
+This project automates the process of filling out HTML forms using OpenAI's GPT models to generate field mappings between form elements and JSON data.
 
-## Features
-- Loads mock data from `mock_data.json`
-- Uses Selenium and ChromeDriver to fill out a sample form
-- Easily extendable for LLM-driven field mapping
+## Current Workflow
 
-## Requirements
-- Python 3.8+
-- Google Chrome browser
+The current implementation follows a three-step process:
 
-## Installation
-1. Clone this repository or download the files.
-2. Install dependencies:
+1. **HTML Form Download**
+   - Downloads the target HTML form from a specified URL
+   - Saves a local copy for processing
+   - Uses this as the template for form filling
+
+2. **OpenAI Mapping Generation**
+   - Sends both the HTML form and JSON data to OpenAI
+   - Uses a carefully crafted prompt to generate field mappings
+   - Receives structured mapping instructions in JSON format
+   - Mapping includes:
+     - Regular input fields
+     - Checkboxes
+     - Select dropdowns
+     - Textareas
+     - Special handling for state fields and additional info sections
+
+3. **Form Processing**
+   - Applies the OpenAI-generated mappings to the HTML
+   - Handles special cases like:
+     - State name to abbreviation conversion
+     - Textarea content placement
+     - Section-specific additional info
+   - Generates a new HTML file with all fields populated
+
+## Setup
+
+1. **Install Poetry**
    ```bash
-   pip install -r requirements.txt
-   # or, if using pyproject.toml
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
+
+2. **Install Dependencies**
+   ```bash
    poetry install
    ```
 
-## Usage
-1. Ensure `mock_data.json` contains the data you want to use.
-2. Run the script:
+3. **Environment Setup**
+   - Create a `.env` file in the project root
+   - Add your OpenAI API key:
+     ```
+     OPENAI_API_KEY=your_api_key_here
+     ```
+
+4. **Run the Processor**
    ```bash
-   poetry run python form_filler.py
+   poetry run python form_processor.py
    ```
 
-The script will open a Chrome browser, navigate to the test form, fill in the fields, and submit the form.
+## Output Files
 
-## Project Structure
-- `form_filler.py` - Main script for form automation
-- `mock_data.json` - Sample data to fill the form
-- `pyproject.toml` - Project dependencies and metadata
+- `original.html`: The downloaded form template
+- `form_mapping.json`: The OpenAI-generated field mappings
+- `processed_form.html`: The final form with all fields populated
+- `form_processor.log`: Detailed processing logs
 
-## Notes
-- The script uses `webdriver-manager` to automatically manage ChromeDriver.
-- For more robust field mapping, integrate an LLM to analyze the HTML and match data fields dynamically.
+## Future Enhancements
+
+Given more time, I would implement the following improvements:
+
+1. **Selenium Integration**
+   - Direct interaction with live web forms
+   - Real-time form submission
+   - Handling of dynamic content
+   - Support for JavaScript-heavy forms
+
+2. **Enhanced Field Mapping**
+   - Support for more complex form structures
+   - Better handling of nested data
+   - Improved validation of field values
+   - Support for file uploads
+
+3. **User Interface**
+   - Web interface for form processing
+   - Real-time preview of form filling
+   - Manual override capabilities
+   - Batch processing support
+
+4. **Error Handling**
+   - More robust error recovery
+   - Better validation of OpenAI responses
+   - Support for partial form completion
+   - Detailed error reporting
+
+5. **Performance Optimization**
+   - Caching of form templates
+   - Parallel processing of multiple forms
+   - Optimized OpenAI prompt engineering
+   - Reduced API calls
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
 
 ## License
-MIT 
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
