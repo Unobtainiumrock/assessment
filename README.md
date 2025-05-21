@@ -56,6 +56,8 @@ The current implementation follows a three-step process:
 
 ## Output Files
 
+**note I left those there for your convenience, but feel free to delete and re-run to generate them again**
+
 - `original.html`: The downloaded form template
 - `form_mapping.json`: The OpenAI-generated field mappings
 - `processed_form.html`: The final form with all fields populated
